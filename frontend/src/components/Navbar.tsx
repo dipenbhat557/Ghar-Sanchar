@@ -3,10 +3,14 @@ import { navlinks } from "../constants";
 import { useEffect, useState } from "react";
 import { FaCloud } from "react-icons/fa";
 
+interface Weather {
+  temp: number;
+}
+
 const Navbar = () => {
   const navigate = useNavigate();
   const [time, setTime] = useState("");
-  const [weather, setWeather] = useState(null);
+  const [weather, setWeather] = useState<Weather>({ temp: 0.0 });
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -27,13 +31,14 @@ const Navbar = () => {
           navigator.geolocation.getCurrentPosition(async (position) => {
             const { latitude, longitude } = position.coords;
             const apiKey = "430b018e006a543efa380109980e75ef";
-            const apiUrl = `https:api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
+            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
             const response = await fetch(apiUrl);
             if (!response.ok) {
               throw new Error("Failed to fetch weather data");
             }
             const data = await response.json();
-            setWeather(data);
+            setWeather({ temp: data?.main?.temp });
+            console.log("resp is ", response);
             console.log(weather);
           });
         } else {
@@ -68,9 +73,9 @@ const Navbar = () => {
         </p>
         <div className="flex gap-2 items-center justify-around">
           <FaCloud className="text-white text-2xl" />
-          {weather ? (
+          {weather?.temp === 0.0 ? (
             <p className="text-[22px] text-white font-semibold">
-              {/* {weather?.[0].description} */}
+              {((weather?.temp - 273) * 100) / 100}
             </p>
           ) : (
             <p className="text-[18px] text-white font-semibold">Loading...</p>
