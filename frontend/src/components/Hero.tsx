@@ -1,13 +1,20 @@
+import { useNavigate } from "react-router-dom";
 import { news } from "../constants";
 
 const Hero = () => {
   let heroNews = [];
+  const navigate = useNavigate();
 
   heroNews = news?.filter((n) => n?.stat === "latest");
 
   return (
     <div className="w-full h-[550px] mb-5 flex items-center justify-between">
-      <div className="w-[49%] h-[88%] relative">
+      <div
+        className="w-[49%] cursor-pointer h-[88%] relative"
+        onClick={() =>
+          navigate("/news/after", { state: { news: heroNews?.[0] } })
+        }
+      >
         <div className="w-full h-full bg-slate-900 opacity-20 absolute" />
         <img
           src={heroNews?.[0]?.img}
@@ -28,7 +35,12 @@ const Hero = () => {
         </div>
       </div>
       <div className="w-[49%]  h-full flex flex-col justify-between">
-        <div className="w-full bg-[#1A1A1A] h-[52%] flex justify-around items-center">
+        <div
+          onClick={() =>
+            navigate("/news/after", { state: { news: heroNews?.[1] } })
+          }
+          className="cursor-pointer w-full bg-[#1A1A1A] h-[52%] flex justify-around items-center"
+        >
           <div className="w-[30%] h-full flex flex-col gap-2">
             <p className="w-full p-3 h-[80%] line-clamp-6 text-white  leading-relaxed">
               {heroNews?.[1]?.content}
@@ -58,7 +70,12 @@ const Hero = () => {
             </p>
           </div>
         </div>
-        <div className="w-full h-[43%] flex justify-between">
+        <div
+          onClick={() =>
+            navigate("/news/after", { state: { news: heroNews?.[0] } })
+          }
+          className="cursor-pointer w-full h-[43%] flex justify-between"
+        >
           <div className="w-[38%] h-full relative">
             <div className="w-full h-full bg-slate-900 opacity-20 absolute" />
             <img

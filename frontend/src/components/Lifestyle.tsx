@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { news } from "../constants";
 import { styles } from "../styles";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 interface News {
   title: string;
   content: string;
@@ -25,6 +26,7 @@ const Lifestyle = () => {
       img: "",
     },
   ]);
+  const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const updateCurrentNews = () => {
@@ -71,8 +73,9 @@ const Lifestyle = () => {
         {currentNews?.map((l, i) => {
           return (
             <div
+              onClick={() => navigate("/news/after", { state: { news: l } })}
               key={i}
-              className="w-[23%] h-full flex flex-col justify-between"
+              className="cursor-pointer w-[23%] h-full flex flex-col justify-between"
             >
               <div className="h-[75%]  w-full rounded-xl relative">
                 <div className="w-full h-full  bg-slate-900 opacity-10 absolute" />

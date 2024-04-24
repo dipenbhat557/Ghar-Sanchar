@@ -3,6 +3,7 @@ import { news } from "../constants";
 import { styles } from "../styles";
 import { FaCircleChevronLeft } from "react-icons/fa6";
 import { FaCircleChevronRight } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 interface News {
   title: string;
@@ -15,6 +16,7 @@ interface News {
 }
 
 const LatestNews = () => {
+  const navigate = useNavigate();
   const oldLatestNews = news?.filter((n) => n?.stat === "latest");
   const latestNews = oldLatestNews.slice(0, 3);
 
@@ -42,14 +44,11 @@ const LatestNews = () => {
           ?.slice(startIndex, endIndex)
           .concat(latestNews?.slice(0, nextIndex))
       );
-      // console.log("Event items : ", eventsItems);
-      // console.log("Current events : ", currentNews);
     } else {
       setCurrentNews(latestNews?.slice(startIndex, endIndex));
     }
   };
 
-  // Function to handle automatic switching of events
   const handleAutoSwitch = () => {
     setCurrentIndex((prevIndex) => {
       const newIndex = (prevIndex + 1) % latestNews?.length;
@@ -77,7 +76,11 @@ const LatestNews = () => {
         <FaCircleChevronLeft className="cursor-pointer text-3xl text-white bg-black rounded-full" />
         {currentNews?.map((l, i) => {
           return (
-            <div key={i} className="h-full w-[30%] relative">
+            <div
+              onClick={() => navigate("/news/after", { state: { news: l } })}
+              key={i}
+              className="cursor-pointer h-full w-[30%] relative"
+            >
               <div className="w-full h-full bg-slate-900 opacity-10 absolute" />
               <img
                 src={l?.img}

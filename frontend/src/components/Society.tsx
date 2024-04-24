@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { news } from "../constants";
 import { styles } from "../styles";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 interface News {
   title: string;
   content: string;
@@ -12,6 +13,7 @@ interface News {
   img: string;
 }
 const Society = () => {
+  const navigate = useNavigate();
   const societyNews = news?.filter((n) => n?.category === "Society");
   const [currentNews, setCurrentNews] = useState<News[]>([
     {
@@ -67,7 +69,11 @@ const Society = () => {
       <div className="w-full h-[80%] flex justify-around items-center">
         {currentNews?.map((l, i) => {
           return (
-            <div key={i} className="h-full w-[23%] relative">
+            <div
+              onClick={() => navigate("/news/after", { state: { news: l } })}
+              key={i}
+              className="cursor-pointer h-full w-[23%] relative"
+            >
               <div className="w-full h-full bg-slate-900 opacity-10 absolute" />
               <img
                 src={l?.img}

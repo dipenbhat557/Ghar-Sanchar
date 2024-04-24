@@ -3,6 +3,7 @@ import { rtop } from "../assets";
 import { news } from "../constants";
 import { styles } from "../styles";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 interface News {
   title: string;
   content: string;
@@ -27,6 +28,7 @@ const Food = () => {
       img: "",
     },
   ]);
+  const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const updateCurrentNews = () => {
@@ -74,8 +76,9 @@ const Food = () => {
           {currentNews?.map((l, i) => {
             return (
               <div
+                onClick={() => navigate("/news/after", { state: { news: l } })}
                 key={i}
-                className="w-[20%] h-full flex flex-col justify-between"
+                className="cursor-pointer w-[20%] h-full flex flex-col justify-between"
               >
                 <div className="h-[90%]  w-full rounded-xl relative">
                   <div className="w-full h-full  bg-slate-900 opacity-10 absolute" />
@@ -118,8 +121,9 @@ const Food = () => {
           {recentNews?.map((r, i) => {
             return (
               <div
+                onClick={() => navigate("/news/after", { state: { news: r } })}
                 key={i}
-                className="w-[18%] h-full  flex gap-2 shadow-sm  shadow-zinc-500"
+                className="cursor-pointer w-[18%] h-full  flex gap-2 shadow-sm  shadow-zinc-500"
               >
                 <div className="w-[30%] h-[85%] relative">
                   <img

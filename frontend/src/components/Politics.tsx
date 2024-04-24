@@ -3,6 +3,7 @@ import { rtop } from "../assets";
 import { news } from "../constants";
 import { styles } from "../styles";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 interface News {
   title: string;
   content: string;
@@ -30,6 +31,7 @@ const Politics = () => {
       img: "",
     },
   ]);
+  const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const updateCurrentNews = () => {
@@ -99,7 +101,11 @@ const Politics = () => {
         <div className="w-full h-[250px] flex justify-between">
           {politics?.map((p, i) => {
             return (
-              <div key={i} className="w-[32%] h-full relative">
+              <div
+                onClick={() => navigate("/news/after", { state: { news: p } })}
+                key={i}
+                className="w-[32%] h-full relative"
+              >
                 <div className="w-full h-full bg-black opacity-20 absolute" />
                 <img
                   src={p?.img}
@@ -136,8 +142,9 @@ const Politics = () => {
           {recentNews?.map((r, i) => {
             return (
               <div
+                onClick={() => navigate("/news/after", { state: { news: r } })}
                 key={i}
-                className="w-[95%] h-[110px]  flex gap-2 shadow-sm  shadow-zinc-500"
+                className="cursor-pointer w-[95%] h-[110px]  flex gap-2 shadow-sm  shadow-zinc-500"
               >
                 <div className="w-[30%] h-[85%] relative">
                   <img

@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./HomePage";
 import NewsPage from "./NewsPage";
+import AfterNews from "./AfterNews";
 
 const Pages = () => {
   return (
@@ -17,6 +18,7 @@ const Pages = () => {
         <Route path="/climate" element={<NewsPage category="Climate" />} />
         <Route path="/travel" element={<NewsPage category="Travel" />} />
         <Route path="/economy" element={<NewsPage category="Economy" />} />
+        <Route path="/news/after" element={<AfterNews />} />
       </Routes>
     </BrowserRouter>
   );
