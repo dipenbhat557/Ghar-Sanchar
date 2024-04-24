@@ -35,31 +35,31 @@ export const navlinks = [
   },
   {
     title: "Politics",
-    link: "#",
+    link: "/politics",
   },
   {
     title: "Sports",
-    link: "#",
+    link: "/sports",
   },
   {
     title: "Business",
-    link: "#",
+    link: "/business",
   },
   {
     title: "Entertainment",
-    link: "#",
+    link: "/entertainment",
   },
   {
     title: "Climate",
-    link: "#",
+    link: "/climate",
   },
   {
     title: "Travel",
-    link: "#",
+    link: "/travel",
   },
   {
     title: "Economy",
-    link: "#",
+    link: "/economy",
   },
 ];
 
@@ -313,7 +313,7 @@ export const news = [
     img: ls1,
   },
   {
-    title: "Climate change: Arctic warming linked to colder winters",
+    title: "Some change: Arctic warming linked to colder winters",
     content:
       "The Stopping Home Office Work’s Unproductive Problems (SHOW UP, get it?) Act of 2023 passed the Republican-majority US House of Representatives on a close-to-party-line vote l...",
     author: "Ginny Dennis",

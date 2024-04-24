@@ -1,8 +1,17 @@
+import { useEffect, useState } from "react";
 import { rtop } from "../assets";
 import { news } from "../constants";
 import { styles } from "../styles";
 import { FaArrowRightLong } from "react-icons/fa6";
-
+interface News {
+  title: string;
+  content: string;
+  author: string;
+  date: string;
+  stat: string;
+  category: string;
+  img: string;
+}
 const Politics = () => {
   const politicsNews = news?.filter(
     (n) => n?.category === "Politics" && n?.stat === ""
@@ -10,7 +19,50 @@ const Politics = () => {
 
   const recentNews = news?.filter((n) => n?.stat === "recent");
 
-  const politics = politicsNews?.slice(1);
+  const [currentNews, setCurrentNews] = useState<News[]>([
+    {
+      title: "",
+      content: "",
+      author: "",
+      date: "",
+      stat: "",
+      category: "",
+      img: "",
+    },
+  ]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const updateCurrentNews = () => {
+    const startIndex = currentIndex;
+    const endIndex = startIndex + 4;
+    const nextIndex = endIndex % politicsNews?.length;
+    // console.log("Start index is ", startIndex, " end index is ", endIndex);
+    if (endIndex !== politicsNews?.length - 1) {
+      setCurrentNews(
+        politicsNews
+          ?.slice(startIndex, endIndex)
+          .concat(politicsNews?.slice(0, nextIndex))
+      );
+    } else {
+      setCurrentNews(politicsNews?.slice(startIndex, endIndex));
+    }
+  };
+
+  const handleAutoSwitch = () => {
+    setCurrentIndex((prevIndex) => {
+      const newIndex = (prevIndex + 1) % politicsNews?.length;
+      return newIndex;
+    });
+  };
+
+  useEffect(() => {
+    updateCurrentNews();
+    // console.log("current news is ", currentNews);
+    const interval = setInterval(handleAutoSwitch, 3000);
+
+    return () => clearInterval(interval);
+  }, [currentIndex]);
+  const politics = currentNews?.slice(1);
   return (
     <div className={`w-full ${styles.padding} h-auto flex justify-between`}>
       <div className="flex flex-col gap-3 w-[60%]">
@@ -25,7 +77,7 @@ const Politics = () => {
         >
           <div className="w-[53%] h-full relative">
             <img
-              src={politicsNews?.[0]?.img}
+              src={currentNews?.[0]?.img}
               className="w-full h-full object-cover"
               alt="img"
             />
@@ -35,12 +87,12 @@ const Politics = () => {
           </div>
           <div className="w-[43%] h-full flex flex-col justify-center gap-3">
             <p className="font-serif text-[22px] font-semibold">
-              {politicsNews?.[0]?.title}
+              {currentNews?.[0]?.title}
             </p>
             <p className="text-[14px]">{politicsNews?.[0]?.content}</p>
             <div className="flex gap-3 font-[] text-[12px]">
-              <p>By {politicsNews?.[0]?.author}</p>
-              <p>{politicsNews?.[0]?.date}</p>
+              <p>By {currentNews?.[0]?.author}</p>
+              <p>{currentNews?.[0]?.date}</p>
             </div>
           </div>
         </div>

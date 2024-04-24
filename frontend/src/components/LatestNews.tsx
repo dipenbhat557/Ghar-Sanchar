@@ -1,10 +1,70 @@
+import { useEffect, useState } from "react";
 import { news } from "../constants";
 import { styles } from "../styles";
 import { FaCircleChevronLeft } from "react-icons/fa6";
 import { FaCircleChevronRight } from "react-icons/fa6";
+
+interface News {
+  title: string;
+  content: string;
+  author: string;
+  date: string;
+  stat: string;
+  category: string;
+  img: string;
+}
+
 const LatestNews = () => {
   const oldLatestNews = news?.filter((n) => n?.stat === "latest");
   const latestNews = oldLatestNews.slice(0, 3);
+
+  const [currentNews, setCurrentNews] = useState<News[]>([
+    {
+      title: "",
+      content: "",
+      author: "",
+      date: "",
+      stat: "",
+      category: "",
+      img: "",
+    },
+  ]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const updateCurrentNews = () => {
+    const startIndex = currentIndex;
+    const endIndex = startIndex + 3;
+    const nextIndex = endIndex % latestNews?.length;
+    // console.log("Start index is ", startIndex, " end index is ", endIndex);
+    if (endIndex !== latestNews?.length - 1) {
+      setCurrentNews(
+        latestNews
+          ?.slice(startIndex, endIndex)
+          .concat(latestNews?.slice(0, nextIndex))
+      );
+      // console.log("Event items : ", eventsItems);
+      // console.log("Current events : ", currentNews);
+    } else {
+      setCurrentNews(latestNews?.slice(startIndex, endIndex));
+    }
+  };
+
+  // Function to handle automatic switching of events
+  const handleAutoSwitch = () => {
+    setCurrentIndex((prevIndex) => {
+      const newIndex = (prevIndex + 1) % latestNews?.length;
+      return newIndex;
+    });
+  };
+
+  useEffect(() => {
+    updateCurrentNews();
+
+    const interval = setInterval(handleAutoSwitch, 3000);
+
+    return () => clearInterval(interval);
+  }, [currentIndex]);
+
   return (
     <div className={` flex flex-col h-[400px] w-full justify-between`}>
       <div
@@ -15,7 +75,7 @@ const LatestNews = () => {
       </div>
       <div className="w-full h-[80%] flex justify-around items-center">
         <FaCircleChevronLeft className="cursor-pointer text-3xl text-white bg-black rounded-full" />
-        {latestNews?.map((l, i) => {
+        {currentNews?.map((l, i) => {
           return (
             <div key={i} className="h-full w-[30%] relative">
               <div className="w-full h-full bg-slate-900 opacity-10 absolute" />

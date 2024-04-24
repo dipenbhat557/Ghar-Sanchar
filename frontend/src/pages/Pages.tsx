@@ -1,11 +1,22 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./HomePage";
+import NewsPage from "./NewsPage";
 
 const Pages = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/politics" element={<NewsPage category="Politics" />} />
+        <Route path="/sports" element={<NewsPage category="Sports" />} />
+        <Route path="/business" element={<NewsPage category="Business" />} />
+        <Route
+          path="/entertainment"
+          element={<NewsPage category="Entertainment" />}
+        />
+        <Route path="/climate" element={<NewsPage category="Climate" />} />
+        <Route path="/travel" element={<NewsPage category="Travel" />} />
+        <Route path="/economy" element={<NewsPage category="Economy" />} />
       </Routes>
     </BrowserRouter>
   );
