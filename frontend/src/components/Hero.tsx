@@ -14,6 +14,9 @@ const Hero = () => {
           alt="hero img 1"
           className="w-full h-full object-cover"
         />
+        <div className="text-white right-0 top-0 rounded-bl-xl absolute px-2 py-1 bg-[#04594D]">
+          #{heroNews?.[0]?.category}
+        </div>
         <p className="text-[20px] w-[80%] font-serif  bottom-10 left-5 text-white font-semibold absolute">
           {heroNews?.[0]?.title}
         </p>
@@ -47,6 +50,9 @@ const Hero = () => {
               alt="hero img 2"
               className="w-full h-full object-cover"
             />
+            <div className="text-white right-0 top-0 rounded-bl-xl absolute px-2 py-1 bg-[#04594D]">
+              #{heroNews?.[1]?.category}
+            </div>
             <p className="text-[20px] w-[80%] font-serif  bottom-10 left-5 text-white font-semibold absolute">
               {heroNews?.[1]?.title}
             </p>
@@ -60,6 +66,9 @@ const Hero = () => {
               alt="hero img 3"
               className="w-full h-full object-cover"
             />
+            <div className="text-white right-0 top-0 rounded-bl-xl absolute px-2 py-1 bg-[#04594D]">
+              #{heroNews?.[2]?.category}
+            </div>
             <p className="text-[20px] w-[80%] font-serif  bottom-10 left-5 text-white font-semibold absolute">
               {heroNews?.[2]?.title}
             </p>
