@@ -7,7 +7,7 @@ const Hero = () => {
 
   return (
     <div className="w-full h-[550px] mb-5 flex items-center justify-between">
-      <div className="w-[48%] h-[70%] relative">
+      <div className="w-[49%] h-[88%] relative">
         <div className="w-full h-full bg-slate-900 opacity-20 absolute" />
         <img
           src={heroNews?.[0]?.img}
@@ -27,8 +27,8 @@ const Hero = () => {
           <p className="text-[12px] text-[#FDFDFD]">{heroNews?.[0]?.date}</p>
         </div>
       </div>
-      <div className="w-[48%]  h-full flex flex-col justify-between">
-        <div className="w-full bg-[#1A1A1A] h-[50%] flex justify-around items-center">
+      <div className="w-[49%]  h-full flex flex-col justify-between">
+        <div className="w-full bg-[#1A1A1A] h-[52%] flex justify-around items-center">
           <div className="w-[30%] h-full flex flex-col gap-2">
             <p className="w-full p-3 h-[80%] line-clamp-6 text-white  leading-relaxed">
               {heroNews?.[1]?.content}
@@ -58,7 +58,7 @@ const Hero = () => {
             </p>
           </div>
         </div>
-        <div className="w-full h-[40%] flex justify-between">
+        <div className="w-full h-[43%] flex justify-between">
           <div className="w-[38%] h-full relative">
             <div className="w-full h-full bg-slate-900 opacity-20 absolute" />
             <img
@@ -85,7 +85,7 @@ const Hero = () => {
                 {heroNews?.[2]?.date}
               </p>
             </div>
-            <p className="text-[#04594D] font-serif line-clamp-3">
+            <p className="text-[#04594D] font-serif w-[90%] line-clamp-3">
               {heroNews?.[2]?.content}
             </p>
           </div>

@@ -13,7 +13,7 @@ const HeroHeader = () => {
         <input
           type="text"
           placeholder="Search for headlines"
-          className="bg-[#04594D] pl-4 w-[80%] h-full placeholder:text-slate-400 placeholder:text-[14px] "
+          className="bg-[#04594D] text-white pl-4 w-[80%] h-full placeholder:text-slate-400 placeholder:text-[14px] "
         />
         <button className=" text-white h-full w-[15%] text-[18px] bg-[#8E4042]">
           SEARCH

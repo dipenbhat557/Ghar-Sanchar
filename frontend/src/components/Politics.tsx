@@ -5,11 +5,15 @@ import { FaArrowRightLong } from "react-icons/fa6";
 
 const Politics = () => {
   const politicsNews = news?.filter(
-    (n) => n?.category === "politics" && n?.stat != "latest"
+    (n) => n?.category === "Politics" && n?.stat === ""
   );
+
+  const recentNews = news?.filter((n) => n?.stat === "recent");
+
+  const politics = politicsNews?.slice(1);
   return (
     <div className={`w-full ${styles.padding} h-auto flex justify-between`}>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 w-[60%]">
         <div
           className={`flex font-serif ${styles?.sectionHeadText} items-center gap-3`}
         >
@@ -17,7 +21,7 @@ const Politics = () => {
           <FaArrowRightLong className="bg-[#04594D] p-1 text-white rounded-full text-3xl" />
         </div>
         <div
-          className={`flex w-full h-[300px] items-center justify-between ${styles.paddingY}`}
+          className={`flex w-full h-[350px] items-center justify-between py-3`}
         >
           <div className="w-[53%] h-full relative">
             <img
@@ -25,19 +29,47 @@ const Politics = () => {
               className="w-full h-full object-cover"
               alt="img"
             />
+            <div className="text-white right-0 top-0 rounded-bl-xl absolute px-2 py-1 bg-[#04594D]">
+              #Politics
+            </div>
           </div>
-          <div className="w-[43%] h-full flex flex-col gap-3">
-            <p>{politicsNews?.[0]?.title}</p>
-            <p>{politicsNews?.[0]?.content}</p>
-            <div className="flex gap-3">
+          <div className="w-[43%] h-full flex flex-col justify-center gap-3">
+            <p className="font-serif text-[22px] font-semibold">
+              {politicsNews?.[0]?.title}
+            </p>
+            <p className="text-[14px]">{politicsNews?.[0]?.content}</p>
+            <div className="flex gap-3 font-[] text-[12px]">
               <p>By {politicsNews?.[0]?.author}</p>
               <p>{politicsNews?.[0]?.date}</p>
             </div>
           </div>
         </div>
-        <div></div>
+        <div className="w-full h-[250px] flex justify-between">
+          {politics?.map((p, i) => {
+            return (
+              <div key={i} className="w-[32%] h-full relative">
+                <div className="w-full h-full bg-black opacity-20 absolute" />
+                <img
+                  src={p?.img}
+                  alt={`img-${i}`}
+                  className="w-full h-full object-cover"
+                />
+                <div className="text-white right-0 top-0 rounded-bl-xl absolute px-2 py-1 bg-[#04594D]">
+                  #Politics
+                </div>
+                <p className="text-white font-serif text-[18px] absolute left-4 bottom-10">
+                  {p?.title}
+                </p>
+                <div className="text-[#FDFDFD] text-[10px] gap-3 flex absolute left-4 bottom-4">
+                  <p> By {p?.author}</p>
+                  <p>{p?.date}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
-      <div className="w-[25%] border border-black p-2 h-auto flex flex-col gap-3">
+      <div className="w-[35%] border border-black p-2 h-auto flex flex-col gap-1">
         <div className="w-full h-[70px] flex gap-2">
           <img
             src={rtop}
@@ -47,6 +79,39 @@ const Politics = () => {
           <div className="text-white font-serif flex items-center justify-center text-[22px] h-[50%] w-[80%] rounded-lg bg-[#04594D]">
             Recent Updates
           </div>
+        </div>
+        <div className="flex w-full flex-col h-auto gap-2 ">
+          {recentNews?.map((r, i) => {
+            return (
+              <div
+                key={i}
+                className="w-[95%] h-[110px]  flex gap-2 shadow-sm  shadow-zinc-500"
+              >
+                <div className="w-[30%] h-[85%] relative">
+                  <img
+                    src={r?.img}
+                    alt="img"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="text-white text-[10px] right-0 top-0 rounded-bl-lg absolute px-1 py-1 bg-[#04594D]">
+                    #{r?.category}
+                  </div>
+                </div>
+                <div className="w-[65%] flex flex-col gap-1 justify-center">
+                  <p className="line-clamp-1 text-[14px] font-serif">
+                    {r?.title}
+                  </p>
+                  <p className="text-[#04594D] leading-4 text-[12px] line-clamp-3 font-serif">
+                    {r?.content}
+                  </p>
+                  <div className=" text-[10px] gap-3 flex  ">
+                    <p> By {r?.author}</p>
+                    <p>{r?.date}</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

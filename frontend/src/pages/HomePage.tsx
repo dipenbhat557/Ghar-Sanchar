@@ -8,7 +8,6 @@ import LatestNews from "../components/LatestNews";
 import Lifestyle from "../components/Lifestyle";
 import Navbar from "../components/Navbar";
 import Politics from "../components/Politics";
-import RecentUpdates from "../components/RecentUpdates";
 import Society from "../components/Society";
 import Subscription from "../components/Subscription";
 
@@ -18,17 +17,15 @@ const HomePage = () => {
       <HeroHeader />
       <Navbar />
       <Hero />
-      <BreakingNews />
+      <BreakingNews bgColor="#1E1E1E" />
       <LatestNews />
       <Politics />
-      <RecentUpdates />
       <Disasters />
-      <BreakingNews />
+      <BreakingNews bgColor="#04594D" />
       <Society />
       <Lifestyle />
       <Subscription />
       <Food />
-      <RecentUpdates />
       <Footer />
     </>
   );

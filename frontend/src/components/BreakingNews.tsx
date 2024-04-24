@@ -11,11 +11,13 @@ interface News {
   img: string;
 }
 
-const BreakingNews = () => {
-  const breakingNews: News[] = news?.filter((n, i) => n?.stat === "breaking");
+const BreakingNews = ({ bgColor }: { bgColor: string }) => {
+  const breakingNews: News[] = news?.filter((n) => n?.stat === "breaking");
   return (
-    <div className={`${styles.paddingX} my-2  h-[70px]`}>
-      <div className="bg-[#1E1E1E] flex items-center justify-around w-full h-full">
+    <div className={`${styles.padding} my-2  h-[120px]`}>
+      <div
+        className={`bg-[${bgColor}] flex items-center justify-around w-full h-full`}
+      >
         <button className="text-[10px] h-[60%] w-[15%] bg-white font-light">
           Breaking News
         </button>
