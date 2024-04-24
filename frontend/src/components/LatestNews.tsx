@@ -3,7 +3,7 @@ import { styles } from "../styles";
 import { FaCircleChevronLeft } from "react-icons/fa6";
 import { FaCircleChevronRight } from "react-icons/fa6";
 const LatestNews = () => {
-  const oldLatestNews = news?.filter((n, i) => n?.stat === "latest");
+  const oldLatestNews = news?.filter((n) => n?.stat === "latest");
   const latestNews = oldLatestNews.slice(0, 3);
   return (
     <div className={` flex flex-col h-[400px] w-full justify-between`}>
