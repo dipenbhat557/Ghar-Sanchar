@@ -6,27 +6,29 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { newsState } from "../store";
 interface News {
-  title: string;
-  content: string;
-  author: string;
-  date: string;
-  stat: string;
-  category: string;
-  img: string;
+  _news_title: string;
+  _news_content: string;
+  _news_author: string;
+  _news_date: string;
+  _news_stat: string;
+  _news_category: string;
+  _news_img: string;
 }
 const Lifestyle = () => {
   const news = useRecoilValue(newsState);
-  const lifestyleNews = news?.filter((n: News) => n?.category === "Lifestyle");
+  const lifestyleNews = news?.filter(
+    (n: News) => n?.["_news_category"] === "Lifestyle"
+  );
 
   const [currentNews, setCurrentNews] = useState<News[]>([
     {
-      title: "",
-      content: "",
-      author: "",
-      date: "",
-      stat: "",
-      category: "",
-      img: "",
+      _news_title: "",
+      _news_content: "",
+      _news_author: "",
+      _news_date: "",
+      _news_stat: "",
+      _news_category: "",
+      _news_img: "",
     },
   ]);
   const navigate = useNavigate();
@@ -86,20 +88,20 @@ const Lifestyle = () => {
               <div className="h-[75%]  w-full rounded-xl relative">
                 <div className="w-full h-full  bg-slate-900 opacity-10 absolute" />
                 <img
-                  src={l?.img}
+                  src={l?.["_news_img"]}
                   alt="disaster img"
                   className="w-full h-full rounded-xl  object-cover"
                 />
                 <div className="text-white right-0 top-0 rounded-bl-xl rounded-tr-xl absolute px-2 py-1 bg-[#04594D]">
-                  #{l?.category}
+                  #{l?.["_news_category"]}
                 </div>
               </div>
               <p className=" font-serif text-[13px] font-semibold">
-                {l?.title}
+                {l?.["_news_title"]}
               </p>
               <div className=" text-[10px] gap-3 flex ">
-                <p className="text-[#8E4042]"> By {l?.author}</p>
-                <p className="text-slate-400">{l?.date}</p>
+                <p className="text-[#8E4042]"> By {l?.["_news_author"]}</p>
+                <p className="text-slate-400">{l?.["_news_date"]}</p>
               </div>
             </div>
           );

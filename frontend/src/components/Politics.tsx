@@ -7,31 +7,32 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { newsState } from "../store";
 interface News {
-  title: string;
-  content: string;
-  author: string;
-  date: string;
-  stat: string;
-  category: string;
-  img: string;
+  _news_title: string;
+  _news_content: string;
+  _news_author: string;
+  _news_date: string;
+  _news_stat: string;
+  _news_category: string;
+  _news_img: string;
 }
 const Politics = () => {
   const news = useRecoilValue(newsState);
   const politicsNews = news?.filter(
-    (n: News) => n?.category === "Politics" && n?.stat === ""
+    (n: News) =>
+      n?.["_news_category"] === "Politics" && n?.["_news_stat"] === ""
   );
 
-  const recentNews = news?.filter((n: News) => n?.stat === "recent");
+  const recentNews = news?.filter((n: News) => n?.["_news_stat"] === "recent");
 
   const [currentNews, setCurrentNews] = useState<News[]>([
     {
-      title: "",
-      content: "",
-      author: "",
-      date: "",
-      stat: "",
-      category: "",
-      img: "",
+      _news_title: "",
+      _news_content: "",
+      _news_author: "",
+      _news_date: "",
+      _news_stat: "",
+      _news_category: "",
+      _news_img: "",
     },
   ]);
   const navigate = useNavigate();
@@ -85,7 +86,7 @@ const Politics = () => {
         >
           <div className="w-[53%] h-full relative">
             <img
-              src={currentNews?.[0]?.img}
+              src={currentNews?.[0]?.["_news_img"]}
               className="w-full h-full object-cover"
               alt="img"
             />
@@ -95,14 +96,14 @@ const Politics = () => {
           </div>
           <div className="w-[43%] h-full flex flex-col justify-center gap-1 sm:gap-3">
             <p className="font-serif text-[15px] sm:text-[22px] font-semibold">
-              {currentNews?.[0]?.title}
+              {currentNews?.[0]?.["_news_title"]}
             </p>
             <p className="text-[12px] sm:text-[14px]">
-              {politicsNews?.[0]?.content}
+              {politicsNews?.[0]?.["_news_content"]}
             </p>
             <div className="flex gap-3 text-[10px] sm:text-[12px]">
-              <p>By {currentNews?.[0]?.author}</p>
-              <p>{currentNews?.[0]?.date}</p>
+              <p>By {currentNews?.[0]?.["_news_author"]}</p>
+              <p>{currentNews?.[0]?.["_news_date"]}</p>
             </div>
           </div>
         </div>
@@ -116,7 +117,7 @@ const Politics = () => {
               >
                 <div className="w-full h-full bg-black opacity-20 absolute" />
                 <img
-                  src={p?.img}
+                  src={p?.["_news_img"]}
                   alt={`img-${i}`}
                   className="w-full h-full object-cover"
                 />
@@ -124,11 +125,11 @@ const Politics = () => {
                   #Politics
                 </div>
                 <p className="text-white font-serif text-[18px] absolute left-4 bottom-10">
-                  {p?.title}
+                  {p?.["_news_title"]}
                 </p>
                 <div className="text-[#FDFDFD] text-[10px] gap-3 flex absolute left-4 bottom-4">
-                  <p> By {p?.author}</p>
-                  <p>{p?.date}</p>
+                  <p> By {p?.["_news_author"]}</p>
+                  <p>{p?.["_news_date"]}</p>
                 </div>
               </div>
             );
@@ -156,24 +157,24 @@ const Politics = () => {
               >
                 <div className="w-[30%] h-[85%] relative">
                   <img
-                    src={r?.img}
+                    src={r?.["_news_img"]}
                     alt="img"
                     className="w-full h-full object-cover"
                   />
                   <div className="text-white text-[10px] right-0 top-0 rounded-bl-lg absolute px-1 py-1 bg-[#04594D]">
-                    #{r?.category}
+                    #{r?.["_news_category"]}
                   </div>
                 </div>
                 <div className="w-[65%] flex flex-col gap-1 justify-center">
                   <p className="line-clamp-1 text-[14px] font-serif">
-                    {r?.title}
+                    {r?.["_news_title"]}
                   </p>
                   <p className="text-[#04594D] leading-4 text-[12px] line-clamp-3 font-serif">
-                    {r?.content}
+                    {r?.["_news_content"]}
                   </p>
                   <div className=" text-[10px] gap-3 flex  ">
-                    <p> By {r?.author}</p>
-                    <p>{r?.date}</p>
+                    <p> By {r?.["_news_author"]}</p>
+                    <p>{r?.["_news_date"]}</p>
                   </div>
                 </div>
               </div>

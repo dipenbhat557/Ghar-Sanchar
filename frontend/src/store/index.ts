@@ -1,10 +1,10 @@
-import { atom } from "recoil";
+import axios from "axios";
+import { selector } from "recoil";
 
-import { news } from "../constants";
-// import useFetch from "../components/UseFetch";
-
-export const newsState = atom({
-  key: "newsState",
-  default: news,
+export const newsState = selector({
+  key: 'newsState',
+  get: async () => {
+    const response = await axios.get(`${import.meta.env.VITE_APP_API_ROOT}/news?per_page=100`)
+    return response.data;
+  },
 });
-// useFetch(`${import.meta.env.VITE_APP_API_ROOT}/general_members`)
