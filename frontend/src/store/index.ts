@@ -1,6 +1,7 @@
 import { atom } from "recoil";
-// import useFetch from "../components/UseFetch";
+
 import { news } from "../constants";
+// import useFetch from "../components/UseFetch";
 
 export const newsState = atom({
   key: "newsState",

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { logo } from "../assets";
+import { logo2 } from "../assets";
 import { styles } from "../styles";
 import { useState } from "react";
 import { useRecoilValue } from "recoil";
@@ -50,7 +50,7 @@ const HeroHeader = () => {
       >
         <div className="w-[35%] sm:w-[15%] sm:h-[80%] ">
           <img
-            src={logo}
+            src={logo2}
             onClick={() => navigate("/")}
             alt="logo"
             className="w-full h-full object-cover"

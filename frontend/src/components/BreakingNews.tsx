@@ -28,7 +28,7 @@ const BreakingNews = ({ bgColor }: { bgColor: string }) => {
         }
         className={`bg-[${bgColor}] flex items-center justify-around w-full h-full`}
       >
-        <button className="text-[8px] sm:text-[10px] h-[60%] w-[15%] bg-white font-light">
+        <button className="text-[10px] h-[60%] w-[15%] bg-white font-light text-[#161]">
           Breaking News
         </button>
         <p className="text-white text-[13px] sm:text-[16px] w-[80%] text-center">
