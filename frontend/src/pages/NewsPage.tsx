@@ -12,13 +12,13 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { newsState } from "../store";
 interface News {
-  title: string;
-  content: string;
-  author: string;
-  date: string;
-  stat: string;
-  category: string;
-  img: string;
+  _news_title: string;
+  _news_content: string;
+  _news_author: string;
+  _news_date: string;
+  _news_stat: string;
+  _news_category: string;
+  _news_img: string;
 }
 const NewsPage = ({ category }: { category: string }) => {
   const news = useRecoilValue(newsState);
@@ -26,12 +26,12 @@ const NewsPage = ({ category }: { category: string }) => {
 
   const [currentNews, setCurrentNews] = useState<News[]>([]);
   useEffect(() => {
-    current = news?.filter((n: News) => n?.category === category);
+    current = news?.filter((n: News) => n?.["_news_category"] === category);
     setCurrentNews(current?.slice(0, 4));
     // console.log("category is ", category, " current is ", current);
   }, [category]);
   //   console.log("current news is ", currentNews);
-  const recent = news?.filter((n: News) => n?.stat === "recent");
+  const recent = news?.filter((n: News) => n?.["_news_stat"] === "recent");
   const recentNews =
     window.innerWidth > 640 ? recent?.slice(0, 5) : recent?.slice(0, 2);
 
@@ -63,7 +63,7 @@ const NewsPage = ({ category }: { category: string }) => {
                 >
                   <div className="w-[35%] h-[70%]">
                     <img
-                      src={n?.img}
+                      src={n?.["_news_img"]}
                       alt="img"
                       className="w-full h-full object-cover"
                     />
@@ -71,11 +71,11 @@ const NewsPage = ({ category }: { category: string }) => {
                   <div className="pl-3 flex h-[90%] w-[60%] flex-col items-start gap-3 justify-center">
                     {" "}
                     <p className="text-[16px] sm:text-[22px] font-semibold">
-                      {n?.title}
+                      {n?.["_news_title"]}
                     </p>
                     <div className="flex gap-3 w-full pb-3 font-semibold text-slate-500 border-b border-slate-300 text-[12px]">
-                      <p>By {n?.author}</p>
-                      <p>{n?.date}</p>
+                      <p>By {n?.["_news_author"]}</p>
+                      <p>{n?.["_news_date"]}</p>
                     </div>
                   </div>
                 </div>
@@ -105,24 +105,24 @@ const NewsPage = ({ category }: { category: string }) => {
                   >
                     <div className="w-[30%] h-[85%] relative">
                       <img
-                        src={r?.img}
+                        src={r?.["_news_img"]}
                         alt="img"
                         className="w-full h-full object-cover"
                       />
                       <div className="text-white text-[8px] sm:text-[10px] right-0 top-0 rounded-bl-lg absolute px-1 py-1 bg-[#04594D]">
-                        #{r?.category}
+                        #{r?.["_news_category"]}
                       </div>
                     </div>
                     <div className="w-[65%] flex flex-col gap-1 justify-center">
                       <p className="line-clamp-1 text-[11px] sm:text-[14px] font-serif">
-                        {r?.title}
+                        {r?.["_news_title"]}
                       </p>
                       <p className="text-[#04594D] leading-4 text-[10px] sm:text-[12px] line-clamp-3 font-serif">
-                        {r?.content}
+                        {r?.["_news_content"]}
                       </p>
                       <div className=" text-[8px] sm:text-[10px] gap-1 sm:gap-3 flex  ">
-                        <p> By {r?.author}</p>
-                        <p>{r?.date}</p>
+                        <p> By {r?.["_news_author"]}</p>
+                        <p>{r?.["_news_date"]}</p>
                       </div>
                     </div>
                   </div>

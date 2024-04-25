@@ -10,26 +10,26 @@ import { IoShareSocialOutline } from "react-icons/io5";
 import { useRecoilValue } from "recoil";
 import { newsState } from "../store";
 interface News {
-  title: string;
-  content: string;
-  author: string;
-  date: string;
-  stat: string;
-  category: string;
-  img: string;
+  _news_title: string;
+  _news_content: string;
+  _news_author: string;
+  _news_date: string;
+  _news_stat: string;
+  _news_category: string;
+  _news_img: string;
 }
 const AfterNews = () => {
   const news = useRecoilValue(newsState);
   const location = useLocation();
   const navigate = useNavigate();
 
-  const recentNews = news?.filter((n: News) => n?.stat === "recent");
+  const recentNews = news?.filter((n: News) => n?.["_news_stat"] === "recent");
   return (
     <>
       <div className="w-full h-[400px] sm:h-[550px] relative">
         <div className="w-full h-full bg-black opacity-20 absolute" />
         <img
-          src={location?.state?.news?.img}
+          src={location?.state?.news?.["_news_img"]}
           alt="news image"
           className="w-full h-full object-cover"
         />
@@ -42,16 +42,17 @@ const AfterNews = () => {
         <div className="w-full h-auto flex justify-around">
           <div className="w-[90%] sm:w-[60%] h-auto flex flex-col gap-8">
             <p className="text-[18px] sm:text-[26px] sm:tracking-wider font-serif font-semibold">
-              {location?.state?.news?.title}
+              {location?.state?.news?.["_news_title"]}
             </p>
             <div className="flex gap-8 tracking-wide text-[14px] justify-between">
               <div className="w-auto flex gap-9">
-                <p>By {location?.state?.news?.author}</p>
+                <p>By {location?.state?.news?.["_news_author"]}</p>
                 <p>{location?.state?.news?.date}</p>
               </div>
               <IoShareSocialOutline
                 onClick={() =>
-                  (window.location.href = location?.state?.news?.img)
+                  (window.location.href =
+                    location?.state?.news?.["_news_author"])
                 }
                 className="cursor-pointer text-3xl bg-slate-200 rounded-full p-1"
               />
@@ -59,7 +60,7 @@ const AfterNews = () => {
             <div
               className={`w-full font-medium h-auto border rounded-xl border-slate-400 leading-loose  ${styles.padding}`}
             >
-              {location?.state?.news?.content}
+              {location?.state?.news?.["_news_author"]}
             </div>
           </div>
           <div className="w-[35%] border border-black p-2 h-[650px] overflow-y-scroll hidden sm:flex flex-col gap-1">
@@ -85,24 +86,24 @@ const AfterNews = () => {
                   >
                     <div className="w-[30%] h-[85%] relative">
                       <img
-                        src={r?.img}
+                        src={r?.["_news_img"]}
                         alt="img"
                         className="w-full h-full object-cover"
                       />
                       <div className="text-white text-[10px] right-0 top-0 rounded-bl-lg absolute px-1 py-1 bg-[#04594D]">
-                        #{r?.category}
+                        #{r?.["_news_category"]}
                       </div>
                     </div>
                     <div className="w-[65%] flex flex-col gap-1 justify-center">
                       <p className="line-clamp-1 text-[14px] font-serif">
-                        {r?.title}
+                        {r?.["_news_title"]}
                       </p>
                       <p className="text-[#04594D] leading-4 text-[12px] line-clamp-3 font-serif">
-                        {r?.content}
+                        {r?.["_news_content"]}
                       </p>
                       <div className=" text-[10px] gap-3 flex  ">
-                        <p> By {r?.author}</p>
-                        <p>{r?.date}</p>
+                        <p> By {r?.["_news_author"]}</p>
+                        <p>{r?.["_news_date"]}</p>
                       </div>
                     </div>
                   </div>

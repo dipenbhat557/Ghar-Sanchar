@@ -6,27 +6,29 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { newsState } from "../store";
 interface News {
-  title: string;
-  content: string;
-  author: string;
-  date: string;
-  stat: string;
-  category: string;
-  img: string;
+  _news_title: string;
+  _news_content: string;
+  _news_author: string;
+  _news_date: string;
+  _news_stat: string;
+  _news_category: string;
+  _news_img: string;
 }
 const Society = () => {
   const news = useRecoilValue(newsState);
   const navigate = useNavigate();
-  const societyNews = news?.filter((n: News) => n?.category === "Society");
+  const societyNews = news?.filter(
+    (n: News) => n?.["_news_category"] === "Society"
+  );
   const [currentNews, setCurrentNews] = useState<News[]>([
     {
-      title: "",
-      content: "",
-      author: "",
-      date: "",
-      stat: "",
-      category: "",
-      img: "",
+      _news_title: "",
+      _news_content: "",
+      _news_author: "",
+      _news_date: "",
+      _news_stat: "",
+      _news_category: "",
+      _news_img: "",
     },
   ]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -82,19 +84,19 @@ const Society = () => {
             >
               <div className="w-full h-full bg-slate-900 opacity-10 absolute" />
               <img
-                src={l?.img}
+                src={l?.["_news_img"]}
                 alt="disaster img"
                 className="w-full h-full object-cover"
               />
               <div className="text-white right-0 top-0 rounded-bl-xl absolute px-2 py-1 bg-[#04594D]">
-                #{l?.category}
+                #{l?.["_news_category"]}
               </div>
               <p className="text-white font-serif text-[18px] absolute left-4 bottom-10">
-                {l?.title}
+                {l?.["_news_title"]}
               </p>
               <div className="text-[#FDFDFD] text-[10px] gap-3 flex absolute left-4 bottom-4">
-                <p> By {l?.author}</p>
-                <p>{l?.date}</p>
+                <p> By {l?.["_news_author"]}</p>
+                <p>{l?.["_news_date"]}</p>
               </div>
             </div>
           );

@@ -5,13 +5,13 @@ import { useState } from "react";
 import { useRecoilValue } from "recoil";
 import { newsState } from "../store";
 interface News {
-  title: string;
-  content: string;
-  author: string;
-  date: string;
-  stat: string;
-  category: string;
-  img: string;
+  _news_title: string;
+  _news_content: string;
+  _news_author: string;
+  _news_date: string;
+  _news_stat: string;
+  _news_category: string;
+  _news_img: string;
 }
 const HeroHeader = () => {
   const navigate = useNavigate();
@@ -25,8 +25,10 @@ const HeroHeader = () => {
   ) => {
     setSearchQuery(event.target.value);
     if (searchQuery.trim() !== "") {
-      const searchResults = news.filter((n) =>
-        n?.title?.toLowerCase().includes(searchQuery.trim().toLowerCase())
+      const searchResults = news.filter((n: News) =>
+        n?.["_news_title"]
+          ?.toLowerCase()
+          .includes(searchQuery.trim().toLowerCase())
       );
       setSearchResult(searchResults);
     }
@@ -35,8 +37,10 @@ const HeroHeader = () => {
 
   const handleSearchButtonClick = () => {
     if (searchQuery.trim() !== "") {
-      const searchResults = news.filter((n) =>
-        n?.title?.toLowerCase().includes(searchQuery.trim().toLowerCase())
+      const searchResults = news.filter((n: News) =>
+        n?.["_news_title"]
+          .toLowerCase()
+          .includes(searchQuery.trim().toLowerCase())
       );
       setSearchResult(searchResults);
     }
@@ -86,7 +90,7 @@ const HeroHeader = () => {
                       navigate("/news/after", { state: { news: s } })
                     }
                   >
-                    {s?.title}
+                    {s?.["_news_title"]}
                   </p>
                 </div>
               );
