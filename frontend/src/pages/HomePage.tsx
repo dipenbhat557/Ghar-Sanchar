@@ -17,7 +17,7 @@ const HomePage = () => {
       <HeroHeader />
       <Navbar />
       <Hero />
-      <BreakingNews bgColor="#04594D" />
+      <BreakingNews bgColor="#161618" />
       <LatestNews />
       <Politics />
       <Disasters />

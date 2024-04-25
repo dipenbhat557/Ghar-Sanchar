@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { logo } from "../assets";
+import { logo2 } from "../assets";
 import { styles } from "../styles";
 
 const HeroHeader = () => {
@@ -10,7 +10,7 @@ const HeroHeader = () => {
     >
       <div className="w-[15%] h-[80%] ">
         <img
-          src={logo}
+          src={logo2}
           onClick={() => navigate("/")}
           alt="logo"
           className="w-full h-full object-cover"
