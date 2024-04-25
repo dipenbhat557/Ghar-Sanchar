@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { rtop } from "../assets";
-import { news } from "../constants";
+// import { news } from "../constants";
 import { styles } from "../styles";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { newsState } from "../store";
 interface News {
   title: string;
   content: string;
@@ -14,8 +16,9 @@ interface News {
   img: string;
 }
 const Food = () => {
-  const foodNews = news?.filter((n) => n?.category === "Food");
-  const recentNews = news?.filter((n) => n?.stat === "recent");
+  const news = useRecoilValue(newsState);
+  const foodNews = news?.filter((n: News) => n?.category === "Food");
+  const recentNews = news?.filter((n: News) => n?.stat === "recent");
 
   const [currentNews, setCurrentNews] = useState<News[]>([
     {
@@ -118,7 +121,7 @@ const Food = () => {
           </div>
         </div>
         <div className="flex w-full  h-[110px] justify-between">
-          {recentNews?.map((r, i) => {
+          {recentNews?.map((r: News, i: number) => {
             return (
               <div
                 onClick={() => navigate("/news/after", { state: { news: r } })}

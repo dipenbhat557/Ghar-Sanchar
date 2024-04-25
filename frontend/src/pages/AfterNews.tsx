@@ -3,14 +3,27 @@ import { RxCrossCircled } from "react-icons/rx";
 import BreakingNews from "../components/BreakingNews";
 import Subscription from "../components/Subscription";
 import Footer from "../components/Footer";
-import { news } from "../constants";
+// import { news } from "../constants";
 import { rtop } from "../assets";
 import { styles } from "../styles";
 import { IoShareSocialOutline } from "react-icons/io5";
+import { useRecoilValue } from "recoil";
+import { newsState } from "../store";
+interface News {
+  title: string;
+  content: string;
+  author: string;
+  date: string;
+  stat: string;
+  category: string;
+  img: string;
+}
 const AfterNews = () => {
+  const news = useRecoilValue(newsState);
   const location = useLocation();
   const navigate = useNavigate();
-  const recentNews = news?.filter((n) => n?.stat === "recent");
+
+  const recentNews = news?.filter((n: News) => n?.stat === "recent");
   return (
     <>
       <div className="w-full h-[550px] relative">
@@ -22,7 +35,7 @@ const AfterNews = () => {
         />
         <RxCrossCircled
           onClick={() => navigate(-1)}
-          className="text-5xl bg-[#04594D] rounded-full text-white absolute top-9 right-9 "
+          className="text-5xl bg-[#04594D] rounded-full cursor-pointer text-white absolute top-9 right-9 "
         />
       </div>
       <div className={` ${styles.padding} w-full h-auto flex flex-col gap-4 `}>
@@ -61,7 +74,7 @@ const AfterNews = () => {
               </div>
             </div>
             <div className="flex w-full flex-col h-auto gap-2 ">
-              {recentNews?.map((r, i) => {
+              {recentNews?.map((r: News, i: number) => {
                 return (
                   <div
                     key={i}

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { news } from "../constants";
+// import { news } from "../constants";
 import { styles } from "../styles";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { newsState } from "../store";
 interface News {
   title: string;
   content: string;
@@ -13,7 +15,8 @@ interface News {
   img: string;
 }
 const Lifestyle = () => {
-  const lifestyleNews = news?.filter((n) => n?.category === "Lifestyle");
+  const news = useRecoilValue(newsState);
+  const lifestyleNews = news?.filter((n: News) => n?.category === "Lifestyle");
 
   const [currentNews, setCurrentNews] = useState<News[]>([
     {

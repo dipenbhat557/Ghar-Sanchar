@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { news } from "../constants";
+// import { news } from "../constants";
 import { styles } from "../styles";
 import { FaCircleChevronLeft } from "react-icons/fa6";
 import { FaCircleChevronRight } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { newsState } from "../store";
 
 interface News {
   title: string;
@@ -16,8 +18,9 @@ interface News {
 }
 
 const LatestNews = () => {
+  const news = useRecoilValue(newsState);
   const navigate = useNavigate();
-  const oldLatestNews = news?.filter((n) => n?.stat === "latest");
+  const oldLatestNews = news?.filter((n: News) => n?.stat === "latest");
   const latestNews = oldLatestNews.slice(0, 3);
 
   const [currentNews, setCurrentNews] = useState<News[]>([

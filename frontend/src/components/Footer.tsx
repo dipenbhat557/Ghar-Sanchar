@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import { github, logo, something, twitter, youtube } from "../assets";
 
 const Footer = () => {
+  const navigate = useNavigate();
   return (
     <div className="w-full bg-gradient-to-r from-[#8E4042D4] to-[#04594DD4] h-[240px] flex flex-col justify-between">
       <div className="w-full h-[80%] flex justify-between items-center">
@@ -40,11 +42,36 @@ const Footer = () => {
           </div>
         </div>
         <div className="w-[40%] h-[10%] flex justify-around">
-          <p className="cursor-pointer font-semibold text-white">Politics</p>
-          <p className="font-semibold cursor-pointer  text-white">Travel</p>
-          <p className="font-semibold text-white cursor-pointer ">Business</p>
-          <p className="font-semibold text-white cursor-pointer ">Economy</p>
-          <p className="font-semibold text-white cursor-pointer ">Life Style</p>
+          <p
+            onClick={() => navigate("/politics")}
+            className="cursor-pointer font-semibold text-white"
+          >
+            Politics
+          </p>
+          <p
+            onClick={() => navigate("/travel")}
+            className="font-semibold cursor-pointer  text-white"
+          >
+            Travel
+          </p>
+          <p
+            onClick={() => navigate("/business")}
+            className="font-semibold text-white cursor-pointer "
+          >
+            Business
+          </p>
+          <p
+            onClick={() => navigate("/economy")}
+            className="font-semibold text-white cursor-pointer "
+          >
+            Economy
+          </p>
+          <p
+            onClick={() => navigate("/lifestyle")}
+            className="font-semibold text-white cursor-pointer "
+          >
+            Life Style
+          </p>
         </div>
       </div>
       <div className="mx-auto w-[40%] py-2 text-slate-300 border-t border-slate-300 flex items-center justify-center">

@@ -5,11 +5,11 @@
  */
 /*
 Plugin Name: News Plugin
-Plugin URI: https://clicknews.com
+Plugin URI: https://gharsanchar.com
 Description: Plugin for managing news articles on your website
 Author: Dipendra
 Version: 1.0.0
-Author URI: https://clicknews.com
+Author URI: https://gharsanchar.com
 */
 
 function generate_news_post_type() {

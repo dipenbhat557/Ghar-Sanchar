@@ -1,11 +1,22 @@
 import { useNavigate } from "react-router-dom";
-import { news } from "../constants";
-
+import { useRecoilValue } from "recoil";
+import { newsState } from "../store";
+// import { news } from "../constants";
+interface News {
+  title: string;
+  content: string;
+  author: string;
+  date: string;
+  stat: string;
+  category: string;
+  img: string;
+}
 const Hero = () => {
+  const news = useRecoilValue(newsState);
   let heroNews = [];
   const navigate = useNavigate();
 
-  heroNews = news?.filter((n) => n?.stat === "latest");
+  heroNews = news?.filter((n: News) => n?.stat === "latest");
 
   return (
     <div className="w-full h-[550px] mb-5 flex items-center justify-between">

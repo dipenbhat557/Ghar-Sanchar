@@ -1,13 +1,20 @@
+import { useNavigate } from "react-router-dom";
 import { logo } from "../assets";
 import { styles } from "../styles";
 
 const HeroHeader = () => {
+  const navigate = useNavigate();
   return (
     <div
       className={`${styles.padding} flex justify-between items-center w-full h-[100px]`}
     >
       <div className="w-[15%] h-[80%] ">
-        <img src={logo} alt="logo" className="w-full h-full object-cover" />
+        <img
+          src={logo}
+          onClick={() => navigate("/")}
+          alt="logo"
+          className="w-full h-full object-cover"
+        />
       </div>
       <div className="w-[50%] h-[70%] flex items-center">
         <input

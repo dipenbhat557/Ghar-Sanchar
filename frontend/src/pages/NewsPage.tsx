@@ -6,9 +6,11 @@ import HeroHeader from "../components/HeroHeader";
 import Navbar from "../components/Navbar";
 import SideHero from "../components/SideHero";
 import Subscription from "../components/Subscription";
-import { news } from "../constants";
+// import { news } from "../constants";
 import { styles } from "../styles";
 import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { newsState } from "../store";
 interface News {
   title: string;
   content: string;
@@ -19,16 +21,17 @@ interface News {
   img: string;
 }
 const NewsPage = ({ category }: { category: string }) => {
+  const news = useRecoilValue(newsState);
   let current: News[] = [];
 
   const [currentNews, setCurrentNews] = useState<News[]>([]);
   useEffect(() => {
-    current = news?.filter((n) => n?.category === category);
+    current = news?.filter((n: News) => n?.category === category);
     setCurrentNews(current?.slice(0, 4));
     // console.log("category is ", category, " current is ", current);
   }, [category]);
   //   console.log("current news is ", currentNews);
-  const recentNews = news?.filter((n) => n?.stat === "recent");
+  const recentNews = news?.filter((n: News) => n?.stat === "recent");
   const navigate = useNavigate();
 
   const handleMore = () => {
@@ -86,7 +89,7 @@ const NewsPage = ({ category }: { category: string }) => {
               </div>
             </div>
             <div className="flex w-full flex-col h-auto gap-2 ">
-              {recentNews?.map((r, i) => {
+              {recentNews?.map((r: News, i: number) => {
                 return (
                   <div
                     key={i}
