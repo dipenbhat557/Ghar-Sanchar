@@ -38,10 +38,10 @@ const LatestNews = () => {
 
   const updateCurrentNews = () => {
     const startIndex = currentIndex;
-    const endIndex = startIndex + 3;
+    const endIndex = window.innerWidth > 640 ? startIndex + 3 : startIndex + 1;
     const nextIndex = endIndex % latestNews?.length;
     // console.log("Start index is ", startIndex, " end index is ", endIndex);
-    if (endIndex !== latestNews?.length - 1) {
+    if (endIndex !== latestNews?.length - 1 && window.innerWidth > 640) {
       setCurrentNews(
         latestNews
           ?.slice(startIndex, endIndex)
@@ -82,7 +82,7 @@ const LatestNews = () => {
             <div
               onClick={() => navigate("/news/after", { state: { news: l } })}
               key={i}
-              className="cursor-pointer h-full w-[30%] relative"
+              className="cursor-pointer h-full w-[70%] sm:w-[30%] relative"
             >
               <div className="w-full h-full bg-slate-900 opacity-10 absolute" />
               <img

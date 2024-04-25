@@ -26,7 +26,7 @@ const AfterNews = () => {
   const recentNews = news?.filter((n: News) => n?.stat === "recent");
   return (
     <>
-      <div className="w-full h-[550px] relative">
+      <div className="w-full h-[400px] sm:h-[550px] relative">
         <div className="w-full h-full bg-black opacity-20 absolute" />
         <img
           src={location?.state?.news?.img}
@@ -40,8 +40,8 @@ const AfterNews = () => {
       </div>
       <div className={` ${styles.padding} w-full h-auto flex flex-col gap-4 `}>
         <div className="w-full h-auto flex justify-around">
-          <div className="w-[60%] h-auto flex flex-col gap-8">
-            <p className="text-[26px] tracking-wider font-serif font-semibold">
+          <div className="w-[90%] sm:w-[60%] h-auto flex flex-col gap-8">
+            <p className="text-[18px] sm:text-[26px] sm:tracking-wider font-serif font-semibold">
               {location?.state?.news?.title}
             </p>
             <div className="flex gap-8 tracking-wide text-[14px] justify-between">
@@ -62,7 +62,7 @@ const AfterNews = () => {
               {location?.state?.news?.content}
             </div>
           </div>
-          <div className="w-[35%] border border-black p-2 h-[650px] overflow-y-scroll flex flex-col gap-1">
+          <div className="w-[35%] border border-black p-2 h-[650px] overflow-y-scroll hidden sm:flex flex-col gap-1">
             <div className="w-full h-[70px] flex gap-2">
               <img
                 src={rtop}
@@ -113,7 +113,7 @@ const AfterNews = () => {
         </div>
         <button
           onClick={() => navigate("/")}
-          className="bg-[#8E4042] text-white font-semibold w-[25%] mx-auto py-2"
+          className="bg-[#8E4042] text-white font-semibold w-[60%] sm:w-[25%] mx-auto py-2"
         >
           Back to Home Page
         </button>

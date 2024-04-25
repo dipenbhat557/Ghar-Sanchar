@@ -6,9 +6,13 @@ const Footer = () => {
   return (
     <div className="w-full bg-gradient-to-r from-[#8E4042D4] to-[#04594DD4] h-[240px] flex flex-col justify-between">
       <div className="w-full h-[80%] flex justify-between items-center">
-        <div className="flex w-[25%] h-full justify-around flex-col items-center">
+        <div className="flex w-[40%] sm:w-[25%] h-full justify-around flex-col items-center">
           <div className="w-[60%] h-[20%]">
-            <img src={logo} alt="logo" className="w-full h-full object-cover" />
+            <img
+              src={logo}
+              alt="logo"
+              className="w-full h-full object-contain"
+            />
           </div>
           <div className="flex justify-between w-[80%] h-[20%]">
             <div className="w-[20%] cursor-pointer  h-[90%]">
@@ -41,7 +45,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="w-[40%] h-[10%] flex justify-around">
+        <div className="w-[30%] sm:w-[40%] h-[80%] sm:h-[10%] flex flex-col sm:flex-row justify-around">
           <p
             onClick={() => navigate("/politics")}
             className="cursor-pointer font-semibold text-white"
@@ -74,7 +78,7 @@ const Footer = () => {
           </p>
         </div>
       </div>
-      <div className="mx-auto w-[40%] py-2 text-slate-300 border-t border-slate-300 flex items-center justify-center">
+      <div className="mx-auto w-[80%] sm:w-[40%] py-2 text-slate-300 border-t border-slate-300 flex items-center justify-center">
         Copyright @2024 SajiloDev
       </div>
     </div>

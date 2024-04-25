@@ -34,10 +34,10 @@ const Lifestyle = () => {
 
   const updateCurrentNews = () => {
     const startIndex = currentIndex;
-    const endIndex = startIndex + 4;
+    const endIndex = window.innerWidth > 640 ? startIndex + 4 : startIndex + 1;
     const nextIndex = endIndex % lifestyleNews?.length;
     // console.log("Start index is ", startIndex, " end index is ", endIndex);
-    if (endIndex !== lifestyleNews?.length - 1) {
+    if (endIndex !== lifestyleNews?.length - 1 && window.innerWidth > 640) {
       setCurrentNews(
         lifestyleNews
           ?.slice(startIndex, endIndex)
@@ -70,7 +70,10 @@ const Lifestyle = () => {
         className={`flex font-serif ${styles?.sectionHeadText} ${styles?.paddingX} items-center gap-3`}
       >
         <p>Life Style</p>
-        <FaArrowRightLong className="bg-[#04594D] p-1 text-white rounded-full text-3xl" />
+        <FaArrowRightLong
+          onClick={() => navigate("/lifestyle")}
+          className="bg-[#04594D] p-1 text-white rounded-full text-3xl"
+        />
       </div>
       <div className="w-full h-[80%] flex justify-around items-center">
         {currentNews?.map((l, i) => {
@@ -78,7 +81,7 @@ const Lifestyle = () => {
             <div
               onClick={() => navigate("/news/after", { state: { news: l } })}
               key={i}
-              className="cursor-pointer w-[23%] h-full flex flex-col justify-between"
+              className="cursor-pointer w-[80%] sm:w-[23%] h-full flex flex-col justify-between"
             >
               <div className="h-[75%]  w-full rounded-xl relative">
                 <div className="w-full h-full  bg-slate-900 opacity-10 absolute" />

@@ -33,10 +33,10 @@ const Society = () => {
 
   const updateCurrentNews = () => {
     const startIndex = currentIndex;
-    const endIndex = startIndex + 4;
+    const endIndex = window.innerWidth > 640 ? startIndex + 4 : startIndex + 1;
     const nextIndex = endIndex % societyNews?.length;
     // console.log("Start index is ", startIndex, " end index is ", endIndex);
-    if (endIndex !== societyNews?.length - 1) {
+    if (endIndex !== societyNews?.length - 1 && window.innerWidth > 640) {
       setCurrentNews(
         societyNews
           ?.slice(startIndex, endIndex)
@@ -67,7 +67,10 @@ const Society = () => {
         className={`flex font-serif ${styles?.sectionHeadText} ${styles?.paddingX} items-center gap-3`}
       >
         <p>Society</p>
-        <FaArrowRightLong className="bg-[#04594D] p-1 text-white rounded-full text-3xl" />
+        <FaArrowRightLong
+          onClick={() => navigate("/society")}
+          className="bg-[#04594D] p-1 text-white rounded-full text-3xl"
+        />
       </div>
       <div className="w-full h-[80%] flex justify-around items-center">
         {currentNews?.map((l, i) => {
@@ -75,7 +78,7 @@ const Society = () => {
             <div
               onClick={() => navigate("/news/after", { state: { news: l } })}
               key={i}
-              className="cursor-pointer h-full w-[23%] relative"
+              className="cursor-pointer h-full w-[80%] sm:w-[23%] relative"
             >
               <div className="w-full h-full bg-slate-900 opacity-10 absolute" />
               <img

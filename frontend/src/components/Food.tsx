@@ -18,7 +18,9 @@ interface News {
 const Food = () => {
   const news = useRecoilValue(newsState);
   const foodNews = news?.filter((n: News) => n?.category === "Food");
-  const recentNews = news?.filter((n: News) => n?.stat === "recent");
+  const recent = news?.filter((n: News) => n?.stat === "recent");
+  const recentNews =
+    window.innerWidth > 640 ? recent?.slice(0, 5) : recent?.slice(0, 2);
 
   const [currentNews, setCurrentNews] = useState<News[]>([
     {
@@ -36,10 +38,10 @@ const Food = () => {
 
   const updateCurrentNews = () => {
     const startIndex = currentIndex;
-    const endIndex = startIndex + 4;
+    const endIndex = window.innerWidth > 640 ? startIndex + 4 : startIndex + 1;
     const nextIndex = endIndex % foodNews?.length;
     // console.log("Start index is ", startIndex, " end index is ", endIndex);
-    if (endIndex !== foodNews?.length - 1) {
+    if (endIndex !== foodNews?.length - 1 && window.innerWidth > 640) {
       setCurrentNews(
         foodNews
           ?.slice(startIndex, endIndex)
@@ -73,7 +75,10 @@ const Food = () => {
           className={`flex font-serif ${styles?.sectionHeadText} ${styles?.paddingX} items-center gap-3`}
         >
           <p>Food</p>
-          <FaArrowRightLong className="bg-[#04594D] p-1 text-white rounded-full text-3xl" />
+          <FaArrowRightLong
+            onClick={() => navigate("/food")}
+            className="bg-[#04594D] p-1 text-white rounded-full text-3xl"
+          />
         </div>
         <div className="w-full h-[80%] flex justify-around items-center">
           {currentNews?.map((l, i) => {
@@ -81,7 +86,7 @@ const Food = () => {
               <div
                 onClick={() => navigate("/news/after", { state: { news: l } })}
                 key={i}
-                className="cursor-pointer w-[20%] h-full flex flex-col justify-between"
+                className="cursor-pointer w-[80%] sm:w-[20%] h-full flex flex-col justify-between"
               >
                 <div className="h-[90%]  w-full rounded-xl relative">
                   <div className="w-full h-full  bg-slate-900 opacity-10 absolute" />
@@ -114,9 +119,9 @@ const Food = () => {
           <img
             src={rtop}
             alt="recent top"
-            className="w-[5%] h-[50%] object-contain"
+            className="w-[15%] sm:w-[5%] h-[50%] object-contain"
           />
-          <div className="text-white font-serif flex items-center justify-center text-[22px] h-[50%] w-[15%] rounded-lg bg-[#04594D]">
+          <div className="text-white font-serif flex items-center justify-center text-[16px] sm:text-[22px] h-[50%] w-[40%] sm:w-[15%] rounded-lg bg-[#04594D]">
             Recent Updates
           </div>
         </div>
@@ -126,7 +131,7 @@ const Food = () => {
               <div
                 onClick={() => navigate("/news/after", { state: { news: r } })}
                 key={i}
-                className="cursor-pointer w-[18%] h-full  flex gap-2 shadow-sm  shadow-zinc-500"
+                className="cursor-pointer w-[45%] sm:w-[18%] h-full  flex gap-2 shadow-sm  shadow-zinc-500"
               >
                 <div className="w-[30%] h-[85%] relative">
                   <img

@@ -31,7 +31,10 @@ const NewsPage = ({ category }: { category: string }) => {
     // console.log("category is ", category, " current is ", current);
   }, [category]);
   //   console.log("current news is ", currentNews);
-  const recentNews = news?.filter((n: News) => n?.stat === "recent");
+  const recent = news?.filter((n: News) => n?.stat === "recent");
+  const recentNews =
+    window.innerWidth > 640 ? recent?.slice(0, 5) : recent?.slice(0, 2);
+
   const navigate = useNavigate();
 
   const handleMore = () => {
@@ -45,9 +48,9 @@ const NewsPage = ({ category }: { category: string }) => {
       <SideHero category={category} />
       <BreakingNews bgColor="#04594D" />
       <div className="w-full h-auto flex flex-col gap-3">
-        <div className="w-full p-2 flex justify-between">
+        <div className="w-full p-2 flex flex-col sm:flex-row justify-between">
           <div
-            className={`${styles.padding} flex flex-col w-[60%] h-auto gap-2 `}
+            className={`${styles.padding} flex flex-col w-[90%] sm:w-[60%] h-auto gap-2 `}
           >
             {currentNews?.map((n, i) => {
               return (
@@ -67,7 +70,9 @@ const NewsPage = ({ category }: { category: string }) => {
                   </div>
                   <div className="pl-3 flex h-[90%] w-[60%] flex-col items-start gap-3 justify-center">
                     {" "}
-                    <p className="text-[22px] font-semibold">{n?.title}</p>
+                    <p className="text-[16px] sm:text-[22px] font-semibold">
+                      {n?.title}
+                    </p>
                     <div className="flex gap-3 w-full pb-3 font-semibold text-slate-500 border-b border-slate-300 text-[12px]">
                       <p>By {n?.author}</p>
                       <p>{n?.date}</p>
@@ -77,7 +82,7 @@ const NewsPage = ({ category }: { category: string }) => {
               );
             })}
           </div>
-          <div className="w-[35%] border border-black p-2 h-[650px] overflow-y-scroll flex flex-col gap-1">
+          <div className="w-[90%] sm:w-[35%] border border-black p-2 h-[200px] sm:h-[650px] overflow-y-scroll flex flex-col gap-1">
             <div className="w-full h-[70px] flex gap-2">
               <img
                 src={rtop}
@@ -88,7 +93,7 @@ const NewsPage = ({ category }: { category: string }) => {
                 Recent Updates
               </div>
             </div>
-            <div className="flex w-full flex-col h-auto gap-2 ">
+            <div className="flex w-full flex-row sm:flex-col h-auto gap-2 ">
               {recentNews?.map((r: News, i: number) => {
                 return (
                   <div
@@ -96,7 +101,7 @@ const NewsPage = ({ category }: { category: string }) => {
                     onClick={() =>
                       navigate("/news/after", { state: { news: r } })
                     }
-                    className="cursor-pointer w-[95%] h-[110px]  flex gap-2 shadow-sm  shadow-zinc-500"
+                    className="cursor-pointer w-[45%] sm:w-[95%] h-[110px]  flex gap-2 shadow-sm  shadow-zinc-500"
                   >
                     <div className="w-[30%] h-[85%] relative">
                       <img
@@ -104,18 +109,18 @@ const NewsPage = ({ category }: { category: string }) => {
                         alt="img"
                         className="w-full h-full object-cover"
                       />
-                      <div className="text-white text-[10px] right-0 top-0 rounded-bl-lg absolute px-1 py-1 bg-[#04594D]">
+                      <div className="text-white text-[8px] sm:text-[10px] right-0 top-0 rounded-bl-lg absolute px-1 py-1 bg-[#04594D]">
                         #{r?.category}
                       </div>
                     </div>
                     <div className="w-[65%] flex flex-col gap-1 justify-center">
-                      <p className="line-clamp-1 text-[14px] font-serif">
+                      <p className="line-clamp-1 text-[11px] sm:text-[14px] font-serif">
                         {r?.title}
                       </p>
-                      <p className="text-[#04594D] leading-4 text-[12px] line-clamp-3 font-serif">
+                      <p className="text-[#04594D] leading-4 text-[10px] sm:text-[12px] line-clamp-3 font-serif">
                         {r?.content}
                       </p>
-                      <div className=" text-[10px] gap-3 flex  ">
+                      <div className=" text-[8px] sm:text-[10px] gap-1 sm:gap-3 flex  ">
                         <p> By {r?.author}</p>
                         <p>{r?.date}</p>
                       </div>

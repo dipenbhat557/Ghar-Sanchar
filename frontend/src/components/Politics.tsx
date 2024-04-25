@@ -39,10 +39,10 @@ const Politics = () => {
 
   const updateCurrentNews = () => {
     const startIndex = currentIndex;
-    const endIndex = startIndex + 4;
+    const endIndex = window.innerWidth > 640 ? startIndex + 4 : startIndex + 2;
     const nextIndex = endIndex % politicsNews?.length;
     // console.log("Start index is ", startIndex, " end index is ", endIndex);
-    if (endIndex !== politicsNews?.length - 1) {
+    if (endIndex !== politicsNews?.length - 1 && window.innerWidth > 640) {
       setCurrentNews(
         politicsNews
           ?.slice(startIndex, endIndex)
@@ -70,15 +70,18 @@ const Politics = () => {
   const politics = currentNews?.slice(1);
   return (
     <div className={`w-full ${styles.padding} h-auto flex justify-between`}>
-      <div className="flex flex-col gap-3 w-[60%]">
+      <div className="flex flex-col gap-3 w-full sm:w-[60%]">
         <div
           className={`flex font-serif ${styles?.sectionHeadText} items-center gap-3`}
         >
           <p>Politics</p>
-          <FaArrowRightLong className="bg-[#04594D] p-1 text-white rounded-full text-3xl" />
+          <FaArrowRightLong
+            onClick={() => navigate("/politics")}
+            className="bg-[#04594D] p-1 text-white rounded-full text-3xl"
+          />
         </div>
         <div
-          className={`flex w-full h-[350px] items-center justify-between py-3`}
+          className={`flex w-full h-[300px] sm:h-[350px] items-center justify-between py-3`}
         >
           <div className="w-[53%] h-full relative">
             <img
@@ -90,24 +93,26 @@ const Politics = () => {
               #Politics
             </div>
           </div>
-          <div className="w-[43%] h-full flex flex-col justify-center gap-3">
-            <p className="font-serif text-[22px] font-semibold">
+          <div className="w-[43%] h-full flex flex-col justify-center gap-1 sm:gap-3">
+            <p className="font-serif text-[15px] sm:text-[22px] font-semibold">
               {currentNews?.[0]?.title}
             </p>
-            <p className="text-[14px]">{politicsNews?.[0]?.content}</p>
-            <div className="flex gap-3 font-[] text-[12px]">
+            <p className="text-[12px] sm:text-[14px]">
+              {politicsNews?.[0]?.content}
+            </p>
+            <div className="flex gap-3 text-[10px] sm:text-[12px]">
               <p>By {currentNews?.[0]?.author}</p>
               <p>{currentNews?.[0]?.date}</p>
             </div>
           </div>
         </div>
-        <div className="w-full h-[250px] flex justify-between">
+        <div className="w-full h-[200px] sm:h-[250px] flex  justify-center sm:justify-between">
           {politics?.map((p, i) => {
             return (
               <div
                 onClick={() => navigate("/news/after", { state: { news: p } })}
                 key={i}
-                className="w-[32%] h-full relative"
+                className="w-[80%] sm:w-[32%] h-full relative"
               >
                 <div className="w-full h-full bg-black opacity-20 absolute" />
                 <img
@@ -130,7 +135,7 @@ const Politics = () => {
           })}
         </div>
       </div>
-      <div className="w-[35%] border border-black p-2 h-auto flex flex-col gap-1">
+      <div className="w-[35%] border border-black p-2 h-auto hidden sm:flex flex-col gap-1">
         <div className="w-full h-[70px] flex gap-2">
           <img
             src={rtop}

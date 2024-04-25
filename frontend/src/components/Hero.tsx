@@ -19,9 +19,9 @@ const Hero = () => {
   heroNews = news?.filter((n: News) => n?.stat === "latest");
 
   return (
-    <div className="w-full h-[550px] mb-5 flex items-center justify-between">
+    <div className="w-full h-[700px] sm:h-[550px] mb-5 flex flex-col sm:flex-row gap-3 sm:gap-0 sm:flex items-center justify-between">
       <div
-        className="w-[49%] cursor-pointer h-[88%] relative"
+        className=" w-full sm:w-[49%] cursor-pointer h-[88%] relative"
         onClick={() =>
           navigate("/news/after", { state: { news: heroNews?.[0] } })
         }
@@ -35,7 +35,7 @@ const Hero = () => {
         <div className="text-white right-0 top-0 rounded-bl-xl absolute px-2 py-1 bg-[#04594D]">
           #{heroNews?.[0]?.category}
         </div>
-        <p className="text-[20px] w-[80%] font-serif  bottom-10 left-5 text-white font-semibold absolute">
+        <p className="text-[16px] sm:text-[20px] w-[80%] font-serif  bottom-10 left-5 text-white font-semibold absolute">
           {heroNews?.[0]?.title}
         </p>
         <div className="flex w-full h-[20] bottom-2 left-5 absolute gap-3">
@@ -45,19 +45,19 @@ const Hero = () => {
           <p className="text-[12px] text-[#FDFDFD]">{heroNews?.[0]?.date}</p>
         </div>
       </div>
-      <div className="w-[49%]  h-full flex flex-col justify-between">
+      <div className="w-full sm:w-[49%]  h-full flex flex-col justify-between">
         <div
           onClick={() =>
             navigate("/news/after", { state: { news: heroNews?.[1] } })
           }
           className="cursor-pointer w-full bg-[#1A1A1A] h-[52%] flex justify-around items-center"
         >
-          <div className="w-[30%] h-full flex flex-col gap-2">
-            <p className="w-full p-3 h-[80%] line-clamp-6 text-white  leading-relaxed">
+          <div className="w-[40%] sm:w-[30%] h-full flex flex-col gap-2">
+            <p className="w-full p-1 sm:p-3 h-[80%] line-clamp-4 text-[14px] sm:text-[16px] sm:line-clamp-6 text-white  sm:leading-relaxed">
               {heroNews?.[1]?.content}
             </p>
-            <div className="flex w-full h-[10%] justify-center gap-2">
-              <p className="text-[#FDFDFD] text-[12px]">
+            <div className="flex w-full h-[10%] justify-center gap-1 sm:gap-2">
+              <p className="text-[#FDFDFD] text-[10px] sm:text-[12px]">
                 By {heroNews?.[1]?.author}
               </p>
               <p className="text-[#FDFDFD] text-[12px]">
@@ -66,7 +66,7 @@ const Hero = () => {
             </div>
           </div>
 
-          <div className="w-[60%] h-full relative">
+          <div className="w-[55%] sm:w-[60%] h-full relative">
             <div className="w-full h-full bg-slate-900 opacity-20 absolute" />
             <img
               src={heroNews?.[1]?.img}
@@ -76,7 +76,7 @@ const Hero = () => {
             <div className="text-white right-0 top-0 rounded-bl-xl absolute px-2 py-1 bg-[#04594D]">
               #{heroNews?.[1]?.category}
             </div>
-            <p className="text-[20px] w-[80%] font-serif  bottom-10 left-5 text-white font-semibold absolute">
+            <p className="text-[16px] sm:text-[20px] w-[80%] font-serif  bottom-10 left-5 text-white font-semibold absolute">
               {heroNews?.[1]?.title}
             </p>
           </div>
@@ -87,7 +87,7 @@ const Hero = () => {
           }
           className="cursor-pointer w-full h-[43%] flex justify-between"
         >
-          <div className="w-[38%] h-full relative">
+          <div className="w-[40%] sm:w-[38%] h-full relative">
             <div className="w-full h-full bg-slate-900 opacity-20 absolute" />
             <img
               src={heroNews?.[2]?.img}
@@ -97,23 +97,23 @@ const Hero = () => {
             <div className="text-white right-0 top-0 rounded-bl-xl absolute px-2 py-1 bg-[#04594D]">
               #{heroNews?.[2]?.category}
             </div>
-            <p className="text-[20px] w-[80%] font-serif  bottom-10 left-5 text-white font-semibold absolute">
+            <p className="text-[14px] sm:text-[20px] w-[80%] font-serif  bottom-10 left-5 text-white font-semibold absolute">
               {heroNews?.[2]?.title}
             </p>
           </div>
-          <div className="w-[58%] h-full flex flex-col justify-around ">
-            <p className="text-[20px] font-semibold font-serif">
+          <div className="w-[55%] sm:w-[58%] h-full flex flex-col justify-around ">
+            <p className="text-[16px] sm:text-[20px] font-semibold font-serif">
               {heroNews?.[2]?.title}
             </p>
             <div className="flex gap-3">
-              <p className="text-slate-400 text-[12px]">
+              <p className="text-slate-400 text-[10px] sm:text-[12px]">
                 By {heroNews?.[2]?.author}
               </p>
-              <p className="text-slate-400 text-[12px]">
+              <p className="text-slate-400 text-[10px] sm:text-[12px]">
                 {heroNews?.[2]?.date}
               </p>
             </div>
-            <p className="text-[#04594D] font-serif w-[90%] line-clamp-3">
+            <p className="text-[#04594D] text-[14px] sm:text-[16px] font-serif w-[90%] line-clamp-3">
               {heroNews?.[2]?.content}
             </p>
           </div>
