@@ -1,4 +1,5 @@
-import logo from "./logo.svg";
+import logo1 from "./logo1.png";
+import logo2 from "./logo2.png"
 
 import d1 from "./disasters/d1.png";
 import d2 from "./disasters/d2.png";
@@ -45,7 +46,8 @@ import something from "./socialMedia/something.svg";
 import youtube from "./socialMedia/youtube.svg";
 
 export {
-  logo,
+  logo1,
+  logo2,
   d1,
   d2,
   d3,
