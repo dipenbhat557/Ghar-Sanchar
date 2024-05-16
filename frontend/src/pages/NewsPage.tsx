@@ -22,23 +22,41 @@ interface News {
 }
 const NewsPage = ({ category }: { category: string }) => {
   const news = useRecoilValue(newsState);
-  let current: News[] = [];
+  let current: News[];
 
-  const [currentNews, setCurrentNews] = useState<News[]>([]);
+  const [currentNews, setCurrentNews] = useState<News[]>([
+    {
+      _news_title: "",
+      _news_content: "",
+      _news_author: "",
+      _news_date: "",
+      _news_stat: "",
+      _news_category: "",
+      _news_img: "",
+    },
+  ]);
   useEffect(() => {
-    current = news?.filter((n: News) => n?.["_news_category"] === category);
+    current = news?.filter(
+      (n: News) =>
+        n?.["_news_category"].toLowerCase() === category.toLowerCase()
+    );
     setCurrentNews(current?.slice(0, 4));
     // console.log("category is ", category, " current is ", current);
   }, [category]);
   //   console.log("current news is ", currentNews);
-  const recent = news?.filter((n: News) => n?.["_news_stat"] === "recent");
+  const recent = news?.filter(
+    (n: News) => n?.["_news_stat"].toLowerCase() === "recent"
+  );
   const recentNews =
     window.innerWidth > 640 ? recent?.slice(0, 5) : recent?.slice(0, 2);
 
   const navigate = useNavigate();
 
   const handleMore = () => {
-    setCurrentNews(current);
+    console.log("current news before ", currentNews);
+    const updatedCurrentNews = [...current]; // Create a copy of current news
+    setCurrentNews(updatedCurrentNews); // Update currentNews state
+    console.log("current news after ", updatedCurrentNews);
   };
 
   return (

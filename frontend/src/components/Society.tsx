@@ -18,7 +18,7 @@ const Society = () => {
   const news = useRecoilValue(newsState);
   const navigate = useNavigate();
   const societyNews = news?.filter(
-    (n: News) => n?.["_news_category"] === "Society"
+    (n: News) => n?.["_news_category"].toLowerCase() === "society"
   );
   const [currentNews, setCurrentNews] = useState<News[]>([
     {
@@ -37,32 +37,27 @@ const Society = () => {
     const startIndex = currentIndex;
     const endIndex = window.innerWidth > 640 ? startIndex + 4 : startIndex + 1;
     const nextIndex = endIndex % societyNews?.length;
-    // console.log("Start index is ", startIndex, " end index is ", endIndex);
-    if (endIndex !== societyNews?.length - 1 && window.innerWidth > 640) {
-      setCurrentNews(
-        societyNews
-          ?.slice(startIndex, endIndex)
-          .concat(societyNews?.slice(0, nextIndex))
-      );
-    } else {
+
+    if (endIndex < societyNews?.length) {
       setCurrentNews(societyNews?.slice(startIndex, endIndex));
+    } else {
+      setCurrentNews(
+        societyNews?.slice(startIndex).concat(societyNews?.slice(0, nextIndex))
+      );
     }
   };
 
   const handleAutoSwitch = () => {
-    setCurrentIndex((prevIndex) => {
-      const newIndex = (prevIndex + 1) % societyNews?.length;
-      return newIndex;
-    });
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % societyNews?.length);
   };
 
   useEffect(() => {
     updateCurrentNews();
-    // console.log("current news is ", currentNews);
     const interval = setInterval(handleAutoSwitch, 3000);
 
     return () => clearInterval(interval);
   }, [currentIndex]);
+
   return (
     <div className={` flex flex-col h-[400px] w-full justify-between`}>
       <div

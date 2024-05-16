@@ -52,7 +52,7 @@ const HeroHeader = () => {
       <div
         className={`${styles.padding} flex justify-between items-center w-full h-[60px] sm:h-[100px]`}
       >
-        <div className="w-[35%] sm:w-[15%] sm:h-[80%] ">
+        <div className="w-[35%] sm:w-[15%] sm:h-[80%] cursor-pointer ">
           <img
             src={logo2}
             onClick={() => navigate("/")}

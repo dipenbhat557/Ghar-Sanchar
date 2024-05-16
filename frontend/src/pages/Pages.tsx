@@ -19,6 +19,8 @@ const Pages = () => {
         <Route path="/travel" element={<NewsPage category="Travel" />} />
         <Route path="/economy" element={<NewsPage category="Economy" />} />
         <Route path="/lifestyle" element={<NewsPage category="Lifestyle" />} />
+
+        <Route path="/society" element={<NewsPage category="Society" />} />
         <Route path="/news/after" element={<AfterNews />} />
       </Routes>
     </BrowserRouter>

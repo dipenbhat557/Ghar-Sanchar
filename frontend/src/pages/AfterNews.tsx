@@ -9,6 +9,7 @@ import { styles } from "../styles";
 import { IoShareSocialOutline } from "react-icons/io5";
 import { useRecoilValue } from "recoil";
 import { newsState } from "../store";
+import React from "react";
 interface News {
   _news_title: string;
   _news_content: string;
@@ -22,7 +23,16 @@ const AfterNews = () => {
   const news = useRecoilValue(newsState);
   const location = useLocation();
   const navigate = useNavigate();
-
+  const newsContent = location?.state?.news?.["_news_content"];
+  const paragraphs = newsContent
+    .split("\r\n")
+    .map((paragraph: string, index: number, array: string[]) => (
+      <React.Fragment key={index}>
+        <p>{paragraph}</p>
+        {/* Add <br> tag after each paragraph, except for the last one */}
+        {index < array.length - 1 && <br />}
+      </React.Fragment>
+    ));
   const recentNews = news?.filter((n: News) => n?.["_news_stat"] === "recent");
   return (
     <>
@@ -57,11 +67,7 @@ const AfterNews = () => {
                 className="cursor-pointer text-3xl bg-slate-200 rounded-full p-1"
               />
             </div>
-            <div
-              className={`w-full font-medium h-auto border rounded-xl border-slate-400 leading-loose  ${styles.padding}`}
-            >
-              {location?.state?.news?.["_news_author"]}
-            </div>
+            <p className={`  ${styles.padding} text-[18px]`}>{paragraphs}</p>
           </div>
           <div className="w-[35%] border border-black p-2 h-[650px] overflow-y-scroll hidden sm:flex flex-col gap-1">
             <div className="w-full h-[70px] flex gap-2">

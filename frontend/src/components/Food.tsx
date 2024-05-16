@@ -17,8 +17,12 @@ interface News {
 }
 const Food = () => {
   const news = useRecoilValue(newsState);
-  const foodNews = news?.filter((n: News) => n?.["_news_category"] === "Food");
-  const recent = news?.filter((n: News) => n?.["_news_stat"] === "recent");
+  const foodNews = news?.filter(
+    (n: News) => n?.["_news_category"].toLowerCase() === "food"
+  );
+  const recent = news?.filter(
+    (n: News) => n?.["_news_stat"].toLowerCase() === "recent"
+  );
   const recentNews =
     window.innerWidth > 640 ? recent?.slice(0, 5) : recent?.slice(0, 2);
 

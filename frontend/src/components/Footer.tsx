@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { github, logo1, something, twitter, youtube } from "../assets";
+import { github, logo1, twitter, youtube } from "../assets";
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -26,13 +26,6 @@ const Footer = () => {
               <img
                 src={github}
                 alt="github"
-                className="w-full h-full object-contain"
-              />
-            </div>
-            <div className="w-[20%] cursor-pointer  h-[90%]">
-              <img
-                src={something}
-                alt="something"
                 className="w-full h-full object-contain"
               />
             </div>

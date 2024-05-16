@@ -19,7 +19,9 @@ const Disasters = () => {
   const navigate = useNavigate();
   const news = useRecoilValue(newsState);
   const disastersNews = news?.filter(
-    (n: News) => n?.["_news_category"] === "Disasters"
+    (n: News) =>
+      n?.["_news_category"].toLowerCase() === "disasters" ||
+      n?.["_news_category"].toLowerCase() === "disaster"
   );
   const [currentNews, setCurrentNews] = useState<News[]>([
     {
@@ -38,8 +40,10 @@ const Disasters = () => {
     const startIndex = currentIndex;
     const endIndex = window.innerWidth > 640 ? startIndex + 4 : startIndex + 1;
     const nextIndex = endIndex % disastersNews?.length;
+    // console.log(disastersNews);
     // console.log("Start index is ", startIndex, " end index is ", endIndex);
-    if (endIndex !== disastersNews?.length - 1 && window.innerWidth > 640) {
+
+    if (endIndex >= disastersNews?.length - 1 && window.innerWidth > 640) {
       setCurrentNews(
         disastersNews
           ?.slice(startIndex, endIndex)

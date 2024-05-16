@@ -19,10 +19,13 @@ const Politics = () => {
   const news = useRecoilValue(newsState);
   const politicsNews = news?.filter(
     (n: News) =>
-      n?.["_news_category"] === "Politics" && n?.["_news_stat"] === ""
+      n?.["_news_category"].toLowerCase() === "politics" &&
+      n?.["_news_stat"] === ""
   );
 
-  const recentNews = news?.filter((n: News) => n?.["_news_stat"] === "recent");
+  const recentNews = news?.filter(
+    (n: News) => n?.["_news_stat"].toLowerCase() === "recent"
+  );
 
   const [currentNews, setCurrentNews] = useState<News[]>([
     {
