@@ -98,10 +98,10 @@ const Politics = () => {
             </div>
           </div>
           <div className="w-[43%] h-full flex flex-col justify-center gap-1 sm:gap-3">
-            <p className="font-serif text-[15px] sm:text-[22px] font-semibold">
+            <p className="font-serif text-[15px] line-clamp-2 sm:text-[22px] font-semibold">
               {currentNews?.[0]?.["_news_title"]}
             </p>
-            <p className="text-[12px] sm:text-[14px]">
+            <p className="text-[12px] sm:text-[14px] line-clamp-6">
               {politicsNews?.[0]?.["_news_content"]}
             </p>
             <div className="flex gap-3 text-[10px] sm:text-[12px]">
