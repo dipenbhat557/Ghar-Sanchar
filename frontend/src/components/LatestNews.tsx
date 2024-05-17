@@ -86,7 +86,7 @@ const LatestNews = () => {
               key={i}
               className="cursor-pointer h-full w-[70%] sm:w-[30%] relative"
             >
-              <div className="w-full h-full bg-slate-900 opacity-10 absolute" />
+              <div className="w-full h-full bg-slate-900 opacity-20 absolute" />
               <img
                 src={l?.["_news_img"]}
                 alt="latest img"
