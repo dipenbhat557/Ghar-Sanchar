@@ -40,8 +40,8 @@ const Navbar = () => {
             }
             const data = await response.json();
             setWeather({ temp: data?.main?.temp });
-            console.log("resp is ", response);
-            console.log(weather);
+            // console.log("resp is ", response);
+            // console.log(weather);
           });
         } else {
           console.error("Geolocation is not supported by this browser.");

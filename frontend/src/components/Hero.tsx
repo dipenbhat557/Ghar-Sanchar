@@ -16,7 +16,9 @@ const Hero = () => {
   let heroNews = [];
   const navigate = useNavigate();
 
-  heroNews = news?.filter((n: News) => n?.["_news_stat"] === "latest");
+  heroNews = news?.filter(
+    (n: News) => n?.["_news_stat"].toLowerCase() === "latest"
+  );
 
   return (
     <div className="w-full h-[700px] sm:h-[550px] mb-5 flex flex-col sm:flex-row gap-3 sm:gap-0 sm:flex items-center justify-between">

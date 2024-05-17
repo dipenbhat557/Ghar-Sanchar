@@ -21,7 +21,7 @@ const LatestNews = () => {
   const news = useRecoilValue(newsState);
   const navigate = useNavigate();
   const oldLatestNews = news?.filter(
-    (n: News) => n?.["_news_stat"] === "latest"
+    (n: News) => n?.["_news_stat"].toLowerCase() === "latest"
   );
   const latestNews = oldLatestNews?.slice(0, 3);
 

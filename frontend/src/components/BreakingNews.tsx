@@ -18,21 +18,26 @@ const BreakingNews = ({ bgColor }: { bgColor: string }) => {
   const navigate = useNavigate();
   const news = useRecoilValue(newsState);
   const breakingNews: News[] = news?.filter(
-    (n: News) => n?.["_news_stat"] === "breaking"
+    (n: News) => n?.["_news_stat"].toLowerCase() === "breaking"
   );
+
   return (
-    <div className={`${styles.padding} my-2 h-[100px] sm:h-[120px]`}>
+    <div
+      className={`${styles.padding} my-2 h-[100px] sm:h-[120px] cursor-pointer`}
+    >
       <div
         onClick={() =>
-          navigate("/news/after", { state: { news: breakingNews?.[0]?.["_news_stat"]} })
+          navigate("/news/after", {
+            state: { news: breakingNews?.[0] },
+          })
         }
         className={`bg-[${bgColor}] flex items-center justify-around w-full h-full`}
       >
         <button className="text-[10px] h-[60%] w-[15%] bg-white font-light text-[#161]">
           Breaking News
         </button>
-        <p className="text-white text-[13px] sm:text-[16px] w-[80%] text-center">
-          {breakingNews?.[0]?.["_news_stat"]}
+        <p className="text-white text-[13px] line-clamp-1 sm:text-[16px] w-[80%] text-center">
+          {breakingNews?.[0]?.["_news_content"]}
         </p>
       </div>
     </div>

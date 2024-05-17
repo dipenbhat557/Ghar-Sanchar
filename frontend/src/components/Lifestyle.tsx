@@ -17,7 +17,7 @@ interface News {
 const Lifestyle = () => {
   const news = useRecoilValue(newsState);
   const lifestyleNews = news?.filter(
-    (n: News) => n?.["_news_category"] === "Lifestyle"
+    (n: News) => n?.["_news_category"].toLowerCase() === "lifestyle"
   );
 
   const [currentNews, setCurrentNews] = useState<News[]>([

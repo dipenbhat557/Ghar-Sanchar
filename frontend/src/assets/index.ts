@@ -41,7 +41,7 @@ import s3 from "./society/s3.png";
 import s4 from "./society/s4.png";
 
 import twitter from "./socialMedia/twitter.svg";
-import github from "./socialMedia/github.svg";
+import github from "./socialMedia/github.png";
 import something from "./socialMedia/something.svg";
 import youtube from "./socialMedia/youtube.svg";
 
