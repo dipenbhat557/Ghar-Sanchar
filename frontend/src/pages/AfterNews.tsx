@@ -30,10 +30,8 @@ const AfterNews = () => {
   const [shareLink, setShareLink] = useState("");
   const queryString = location.search;
 
-  // Use the URLSearchParams API to parse the query string
   const queryParams = new URLSearchParams(queryString);
 
-  // Access the value of a specific query parameter
   const queryTitle = queryParams.get("_news_title") || "";
 
   const currentNews =
@@ -58,12 +56,10 @@ const AfterNews = () => {
     ?.map((paragraph: string, index: number, array: string[]) => (
       <React.Fragment key={index}>
         <p>{paragraph}</p>
-        {/* Add <br> tag after each paragraph, except for the last one */}
         {index < array.length - 1 && <br />}
       </React.Fragment>
     ));
   useEffect(() => {
-    // Generate shareable link based on the current news content
     generateShareLink();
     console.log("current news is ", currentNews);
   }, [location.state?.news]);
@@ -71,7 +67,6 @@ const AfterNews = () => {
   // Function to generate a shareable link with the news content encoded
   const generateShareLink = () => {
     if (currentNews) {
-      // Construct the shareable link with the encoded news content
       const shareableLink = `${
         window.location.origin
       }/news/after?_news_title=${encodeURIComponent(currentNews._news_title)}`;
@@ -81,11 +76,8 @@ const AfterNews = () => {
 
   // Function to handle share button click
   const handleShare = () => {
-    // Copy shareable link to clipboard
     navigator.clipboard.writeText(shareLink).then(() => {
-      // Set copy success message
       setCopySuccess(true);
-      // Reset copy success message after 2 seconds
       setTimeout(() => {
         setCopySuccess(false);
       }, 2000);
